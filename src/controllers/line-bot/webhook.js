@@ -7,7 +7,7 @@ const configJS = require("../../../configs");
 
 //const { replyNotTypeText } = require("./templateReplys/defaultReply");
 //const replyRegisterProject = require("./templateReplys/registerProjectDone");
-//const noRegister = require("./templateReplys/noRegisterProject");
+const noRegister = require("./templateReplys/noRegisterProject");
 //const notIngroup = require("./templateReplys/notIngroup");
 //const replyReportProblem = require("./templateReplys/reportProblem");
 console.log("XX >>", configJS.CHANNEL_ACCESS_TOKEN);
@@ -83,6 +83,15 @@ const webhook = (req, res) => {
           //     };
           //     return client.replyMessage(replyToken, responReport);
           //   }
+
+          var userId = event.source.userId;
+          //var uriRegister = configJS.URL_LIFF_REGISTER;
+          //var uri = uriRegister + "?user=" + userId;
+          //noRegister.contents.contents[0].hero.action.uri = uri;
+          //noRegister.contents.contents[0].body.action.uri = uri;
+          //noRegister.contents.contents[0].footer.contents[0].action.uri = uri;
+
+          return client.replyMessage(replyToken, noRegister);
         }
       }
 
