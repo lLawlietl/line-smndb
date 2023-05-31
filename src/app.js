@@ -9,6 +9,9 @@ app.use(
     extended: true,
   })
 );
+app.get("/", (req, res) => {
+  res.send(`Hello! Go to item`);
+});
 
 app.get("/api", (req, res) => {
   const path = `/api/item`;
