@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const router = express.Router();
-const line = require("@line/bot-sdk");
 const lineBotController = require("../../controllers/line-bot");
 
 // app.use(line.middleware(config));

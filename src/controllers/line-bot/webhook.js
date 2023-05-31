@@ -1,6 +1,6 @@
 const line = require("@line/bot-sdk");
 const config = require("../../../config.json");
-//const configJS = require("../../../configs");
+const configJS = require("../../../configs");
 //const words = require("../../configs/words.json");
 //const getDetailByGroupId = require("../../controllers/db/getDetailByGroupId");
 //const reportLog = require("../db/addReportLog");
@@ -10,8 +10,9 @@ const config = require("../../../config.json");
 //const noRegister = require("./templateReplys/noRegisterProject");
 //const notIngroup = require("./templateReplys/notIngroup");
 //const replyReportProblem = require("./templateReplys/reportProblem");
-config.channelAccessToken = process.env.CHANNEL_ACCESS_TOKEN;
-config.channelSecret = process.env.CHANNEL_SECRET;
+console.log("XX >>", configJS.CHANNEL_ACCESS_TOKEN);
+config.channelAccessToken = configJS.CHANNEL_ACCESS_TOKEN;
+config.channelSecret = configJS.CHANNEL_SECRET;
 
 const client = new line.Client(config);
 

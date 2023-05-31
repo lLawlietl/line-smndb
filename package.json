@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node .\\src\\app.js",
+    "start": "cls&&set NODE_ENV=dev&&node .\\src\\app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,7 +21,9 @@
   "dependencies": {
     "@line/bot-sdk": "^7.5.2",
     "cors": "^2.8.5",
+    "dotenv": "^16.1.1",
     "express": "^4.18.2",
+    "path": "^0.12.7",
     "yarn": "^1.22.19"
   }
 }
