@@ -91,9 +91,8 @@ const webhook = (req, res) => {
             return client.replyMessage(replyToken, defaultTemplate);
           } else if (text.trim() == "#manual") {
             const messageManual = {
-              type: "video",
-              originalContentUrl: "https://youtu.be/K0Wv6TUNGL4",
-              previewImageUrl: "https://youtu.be/K0Wv6TUNGL4",
+              type: "text",
+              text: "https://youtu.be/K0Wv6TUNGL4",
             };
 
             return client.replyMessage(replyToken, messageManual);
