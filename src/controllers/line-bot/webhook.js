@@ -114,7 +114,7 @@ const webhook = (req, res) => {
               altText: "Response message",
               contents: {
                 type: "carousel",
-                contents: replyPromotion,
+                contents: replyPromotions,
               },
             };
 
