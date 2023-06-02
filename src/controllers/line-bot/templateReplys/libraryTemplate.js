@@ -5,7 +5,7 @@ const libraryTemplate = {
     type: "carousel",
     contents: [
       {
-        id: "earth",
+        //id: "earth",
         type: "bubble",
         hero: {
           type: "image",
@@ -67,7 +67,7 @@ const libraryTemplate = {
         },
       },
       {
-        id: "water",
+        //id: "water",
         type: "bubble",
         hero: {
           type: "image",
@@ -84,7 +84,7 @@ const libraryTemplate = {
         },
       },
       {
-        id: "wind",
+        //id: "wind",
         type: "bubble",
         hero: {
           type: "image",
@@ -101,7 +101,7 @@ const libraryTemplate = {
         },
       },
       {
-        id: "fire",
+        //id: "fire",
         type: "bubble",
         hero: {
           type: "image",
@@ -118,7 +118,7 @@ const libraryTemplate = {
         },
       },
       {
-        id: "light",
+        //id: "light",
         type: "bubble",
         hero: {
           type: "image",
@@ -135,7 +135,7 @@ const libraryTemplate = {
         },
       },
       {
-        id: "dark",
+        //id: "dark",
         type: "bubble",
         hero: {
           type: "image",
