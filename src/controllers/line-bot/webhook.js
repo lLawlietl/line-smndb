@@ -11,7 +11,7 @@ const noRegister = require("./templateReplys/noRegisterProject");
 //const notIngroup = require("./templateReplys/notIngroup");
 //const replyReportProblem = require("./templateReplys/reportProblem");
 
-const promotions = require("./../../data/promotions");
+const promotions = require("./../../data/promotions.json");
 
 console.log("XX >>", configJS.CHANNEL_ACCESS_TOKEN);
 config.channelAccessToken = configJS.CHANNEL_ACCESS_TOKEN;
