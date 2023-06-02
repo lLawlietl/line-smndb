@@ -24,7 +24,15 @@ const defaultTemplate = {
               weight: "bold",
               size: "xl",
               wrap: true,
-              contents: [],
+              contents: [
+                {
+                  action: {
+                    type: "text",
+                    label: "#1",
+                    //uri: "https://linecorp.com",
+                  },
+                },
+              ],
             },
           ],
         },
