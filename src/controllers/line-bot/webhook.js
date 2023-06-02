@@ -129,27 +129,44 @@ const webhook = (req, res) => {
 
             return client.replyMessage(replyToken, messagePromotion);
           } else if (text.trim() == "#library") {
-            // console.log("libraryTemplate >>", libraryTemplate);
-            // for (item of libraryTemplate.contents.contents) {
-            //   let objectPack = [];
-            //   for (pack of packs.data) {
-            //     objectPack.push({
-            //       type: "button",
-            //       action: {
-            //         type: "message",
-            //         label: pack.label,
-            //         text: `#${item.id}-${pack.value}`,
-            //       },
-            //     });
-            //     console.log("objectPack >>", objectPack);
+            //console.log("libraryTemplate >>", libraryTemplate);
+            let cnt = 0;
+            let type = "";
+            for (item of libraryTemplate.contents.contents) {
+              let objectPack = [];
+              if (cnt == 0) {
+                type = "earth";
+              } else if (cnt == 1) {
+                type = "water";
+              } else if (cnt == 2) {
+                type = "wind";
+              } else if (cnt == 3) {
+                type = "fire";
+              } else if (cnt == 4) {
+                type = "light";
+              } else if (cnt == 5) {
+                type = "dark";
+              }
+              for (pack of packs.data) {
+                objectPack.push({
+                  type: "button",
+                  action: {
+                    type: "message",
+                    label: pack.label,
+                    text: `#${type}-${pack.value}`,
+                  },
+                });
+                console.log("objectPack >>", objectPack);
 
-            //     objectPack.push({
-            //       type: "separator",
-            //     });
-            //   }
+                objectPack.push({
+                  type: "separator",
+                });
+              }
 
-            //   item.body.contents = objectPack;
-            // }
+              item.body.contents = objectPack;
+
+              cnt++;
+            }
 
             console.log("libraryTemplate >>", libraryTemplate);
             return client.replyMessage(replyToken, libraryTemplate);
