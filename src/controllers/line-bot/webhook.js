@@ -16,7 +16,6 @@ const noRegister = require("./templateReplys/noRegisterProject");
 const packs = require("./../../data/packs/packs.json");
 const promotions = require("./../../data/promotions/promotions.json");
 
-console.log("XX >>", configJS.CHANNEL_ACCESS_TOKEN);
 config.channelAccessToken = configJS.CHANNEL_ACCESS_TOKEN;
 config.channelSecret = configJS.CHANNEL_SECRET;
 
@@ -130,6 +129,7 @@ const webhook = (req, res) => {
 
             return client.replyMessage(replyToken, messagePromotion);
           } else if (text.trim() == "#library") {
+            console.log("libraryTemplate >>", libraryTemplate);
             for (item of libraryTemplate.contents.contents) {
               let objectPack = [];
               for (pack of packs.data) {
