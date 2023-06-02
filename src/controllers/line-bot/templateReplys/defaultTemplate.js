@@ -24,15 +24,12 @@ const defaultTemplate = {
               weight: "bold",
               size: "xl",
               wrap: true,
-              contents: [
-                {
-                  action: {
-                    type: "message",
-                    label: "test1",
-                    text: "test2",
-                  },
-                },
-              ],
+              action: {
+                type: "message",
+                label: "test1",
+                text: "test2",
+              },
+              contents: [],
             },
           ],
         },
