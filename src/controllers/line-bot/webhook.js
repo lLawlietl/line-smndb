@@ -15,6 +15,7 @@ const noRegister = require("./templateReplys/noRegisterProject");
 
 const packs = require("./../../data/packs/packs.json");
 const promotions = require("./../../data/promotions/promotions.json");
+const cards = require("./../../data/cards/cards");
 
 config.channelAccessToken = configJS.CHANNEL_ACCESS_TOKEN;
 config.channelSecret = configJS.CHANNEL_SECRET;
@@ -153,7 +154,7 @@ const webhook = (req, res) => {
                   action: {
                     type: "message",
                     label: pack.label,
-                    text: `#${type}-${pack.value}`,
+                    text: `${type}-${pack.value}`,
                   },
                 });
                 console.log("objectPack >>", objectPack);
@@ -170,6 +171,34 @@ const webhook = (req, res) => {
 
             console.log("libraryTemplate >>", libraryTemplate);
             return client.replyMessage(replyToken, libraryTemplate);
+          } else if (text.trim().includes("-all")) {
+            let type = text.trim().substring("-")[0];
+            let filter = cards.dataD4K.filter((o) => o.element == type);
+            let object = [];
+            for (data of filter) {
+              object.push({
+                type: "bubble",
+                action: {
+                  type: "uri",
+                  uri: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`,
+                },
+                hero: {
+                  type: "image",
+                  url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`,
+                  size: "full",
+                  aspectRatio: "10:15",
+                  aspectMode: "fit",
+                },
+              });
+            }
+            return client.replyMessage(replyToken, {
+              type: "flex",
+              altText: "Response message",
+              contents: {
+                type: "carousel",
+                contents: object,
+              },
+            });
           }
 
           var userId = event.source.userId;
