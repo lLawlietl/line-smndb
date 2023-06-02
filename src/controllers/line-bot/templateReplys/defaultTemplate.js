@@ -27,9 +27,9 @@ const defaultTemplate = {
               contents: [
                 {
                   action: {
-                    type: "text",
-                    label: "#1",
-                    //uri: "https://linecorp.com",
+                    type: "message",
+                    label: "test1",
+                    text: "test2",
                   },
                 },
               ],
