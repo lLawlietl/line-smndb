@@ -6,11 +6,14 @@ const configJS = require("../../../configs");
 //const reportLog = require("../db/addReportLog");
 
 const defaultTemplate = require("./templateReplys/defaultTemplate");
+const libraryTemplate = require("./templateReplys/libraryTemplate");
+
 //const replyRegisterProject = require("./templateReplys/registerProjectDone");
 const noRegister = require("./templateReplys/noRegisterProject");
 //const notIngroup = require("./templateReplys/notIngroup");
 //const replyReportProblem = require("./templateReplys/reportProblem");
 
+const packs = require("./../../data/packs/packs.json");
 const promotions = require("./../../data/promotions/promotions.json");
 
 console.log("XX >>", configJS.CHANNEL_ACCESS_TOKEN);
@@ -126,6 +129,30 @@ const webhook = (req, res) => {
             };
 
             return client.replyMessage(replyToken, messagePromotion);
+          } else if (text.trim() == "#library") {
+            for (item of libraryTemplate.contents.contents) {
+              let objectPack = [];
+              for (pack of packs.data) {
+                objectPack.push({
+                  type: "button",
+                  action: {
+                    type: "message",
+                    label: "pack.label",
+                    text: `#${item.id}-${pack.value}`,
+                  },
+                });
+                console.log("objectPack >>", objectPack);
+
+                objectPack.push({
+                  type: "separator",
+                });
+              }
+
+              item.body.contents = objectPack;
+            }
+
+            console.log("libraryTemplate >>", libraryTemplate);
+            return client.replyMessage(replyToken, libraryTemplate);
           }
 
           var userId = event.source.userId;
