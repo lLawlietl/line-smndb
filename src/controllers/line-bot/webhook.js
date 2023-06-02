@@ -5,7 +5,7 @@ const configJS = require("../../../configs");
 //const getDetailByGroupId = require("../../controllers/db/getDetailByGroupId");
 //const reportLog = require("../db/addReportLog");
 
-const { defaultTemplate } = require("./templateReplys/defaultTemplate");
+const defaultTemplate = require("./templateReplys/defaultTemplate");
 //const replyRegisterProject = require("./templateReplys/registerProjectDone");
 const noRegister = require("./templateReplys/noRegisterProject");
 //const notIngroup = require("./templateReplys/notIngroup");
