@@ -129,27 +129,27 @@ const webhook = (req, res) => {
 
             return client.replyMessage(replyToken, messagePromotion);
           } else if (text.trim() == "#library") {
-            console.log("libraryTemplate >>", libraryTemplate);
-            for (item of libraryTemplate.contents.contents) {
-              let objectPack = [];
-              for (pack of packs.data) {
-                objectPack.push({
-                  type: "button",
-                  action: {
-                    type: "message",
-                    label: "pack.label",
-                    text: `#${item.id}-${pack.value}`,
-                  },
-                });
-                console.log("objectPack >>", objectPack);
+            // console.log("libraryTemplate >>", libraryTemplate);
+            // for (item of libraryTemplate.contents.contents) {
+            //   let objectPack = [];
+            //   for (pack of packs.data) {
+            //     objectPack.push({
+            //       type: "button",
+            //       action: {
+            //         type: "message",
+            //         label: pack.label,
+            //         text: `#${item.id}-${pack.value}`,
+            //       },
+            //     });
+            //     console.log("objectPack >>", objectPack);
 
-                objectPack.push({
-                  type: "separator",
-                });
-              }
+            //     objectPack.push({
+            //       type: "separator",
+            //     });
+            //   }
 
-              item.body.contents = objectPack;
-            }
+            //   item.body.contents = objectPack;
+            // }
 
             console.log("libraryTemplate >>", libraryTemplate);
             return client.replyMessage(replyToken, libraryTemplate);
