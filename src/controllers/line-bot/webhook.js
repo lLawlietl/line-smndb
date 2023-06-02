@@ -5,7 +5,7 @@ const configJS = require("../../../configs");
 //const getDetailByGroupId = require("../../controllers/db/getDetailByGroupId");
 //const reportLog = require("../db/addReportLog");
 
-//const { replyNotTypeText } = require("./templateReplys/defaultReply");
+const { defaultTemplate } = require("./templateReplys/defaultTemplate");
 //const replyRegisterProject = require("./templateReplys/registerProjectDone");
 const noRegister = require("./templateReplys/noRegisterProject");
 //const notIngroup = require("./templateReplys/notIngroup");
@@ -83,6 +83,10 @@ const webhook = (req, res) => {
           //     };
           //     return client.replyMessage(replyToken, responReport);
           //   }
+
+          if (text.trim() == "smn") {
+            return client.replyMessage(replyToken, defaultTemplate);
+          }
 
           var userId = event.source.userId;
           //var uriRegister = configJS.URL_LIFF_REGISTER;
