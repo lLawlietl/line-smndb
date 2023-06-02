@@ -10,6 +10,9 @@ const defaultTemplate = require("./templateReplys/defaultTemplate");
 const noRegister = require("./templateReplys/noRegisterProject");
 //const notIngroup = require("./templateReplys/notIngroup");
 //const replyReportProblem = require("./templateReplys/reportProblem");
+
+const promotions = require("./../../data/promotions");
+
 console.log("XX >>", configJS.CHANNEL_ACCESS_TOKEN);
 config.channelAccessToken = configJS.CHANNEL_ACCESS_TOKEN;
 config.channelSecret = configJS.CHANNEL_SECRET;
@@ -86,6 +89,36 @@ const webhook = (req, res) => {
 
           if (text.trim() == "smn") {
             return client.replyMessage(replyToken, defaultTemplate);
+          } else if (text.trim() == "#promotion") {
+            console.log("promotion >>", promotions);
+            let replyPromotions = [];
+            for (item of promotions.data) {
+              replyPromotions.push({
+                type: "bubble",
+                action: {
+                  type: "uri",
+                  uri: item.value,
+                },
+                hero: {
+                  type: "image",
+                  url: item.value,
+                  size: "full",
+                  aspectRatio: "10:15",
+                  aspectMode: "fit",
+                },
+              });
+            }
+
+            const messagePromotion = {
+              type: "flex",
+              altText: "Response message",
+              contents: {
+                type: "carousel",
+                contents: replyPromotion,
+              },
+            };
+
+            return client.replyMessage(replyToken, messagePromotion);
           }
 
           var userId = event.source.userId;
