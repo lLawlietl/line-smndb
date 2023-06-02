@@ -89,6 +89,32 @@ const webhook = (req, res) => {
 
           if (text.trim() == "smn") {
             return client.replyMessage(replyToken, defaultTemplate);
+          } else if (text.trim() == "#manual") {
+            const messageManual = {
+              type: "flex",
+              altText: "Response message",
+              contents: {
+                type: "carousel",
+                contents: [
+                  {
+                    type: "bubble",
+                    action: {
+                      type: "uri",
+                      uri: "https://www.youtube.com/watch?v=K0Wv6TUNGL4&pp=ygUq4Lin4Li04LiY4Li14LmA4Lil4LmI4LiZIHN1bW1vbm5lciBuZXcgZXJh",
+                    },
+                    hero: {
+                      type: "video",
+                      originalContentUrl:
+                        "https://www.youtube.com/watch?v=K0Wv6TUNGL4&pp=ygUq4Lin4Li04LiY4Li14LmA4Lil4LmI4LiZIHN1bW1vbm5lciBuZXcgZXJh",
+                      previewImageUrl:
+                        "https://www.youtube.com/watch?v=K0Wv6TUNGL4&pp=ygUq4Lin4Li04LiY4Li14LmA4Lil4LmI4LiZIHN1bW1vbm5lciBuZXcgZXJh",
+                    },
+                  },
+                ],
+              },
+            };
+
+            return client.replyMessage(replyToken, messageManual);
           } else if (text.trim() == "#promotion") {
             console.log("promotion >>", promotions);
             let replyPromotions = [];
