@@ -174,6 +174,7 @@ const webhook = (req, res) => {
           } else if (text.trim().includes("-all")) {
             let type = text.trim().substring("-")[0];
             let filter = cards.dataD4K.filter((o) => o.element == type);
+            consolee.log("filter >>", filter);
             let object = [];
             for (data of filter) {
               object.push({
@@ -198,6 +199,11 @@ const webhook = (req, res) => {
                 type: "carousel",
                 contents: object,
               },
+            });
+          } else {
+            return client.replyMessage(replyToken, {
+              type: "text",
+              text: "สวัสดีครับ พิมพ์ smn เพื่อเริ่มใช้งานได้เลยครับ",
             });
           }
 
