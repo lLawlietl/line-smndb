@@ -1,6 +1,6 @@
-const fetch = require("node-fetch");
+const axios = require("axios");
 
-const listCard = () => {
+const listCard = async () => {
   // https://smndb.vercel.app/data/d4k
   // https://smndb.vercel.app/data/starter
   // https://smndb.vercel.app/data/alleluia
@@ -10,38 +10,34 @@ const listCard = () => {
   let dataAlleluia = [];
 
   let url = "https://smndb.vercel.app/data/d4k";
-  let settings = { method: "Get" };
 
-  fetch(url, settings)
-    .then((res) => res.json())
-    .then((json) => {
-      // do something with JSON
-      console.log("dataD4K >>", json);
-      dataD4K = json2array(json);
-    });
+  // fetch(url, settings)
+  //   .then((res) => res.json())
+  //   .then((json) => {
+  //     // do something with JSON
+  //     console.log("dataD4K >>", json);
+  //     dataD4K = json2array(json);
+  //   });
 
-  url = "https://smndb.vercel.app/data/starter";
-  fetch(url, settings)
-    .then((res) => res.json())
-    .then((json) => {
-      // do something with JSON
-      console.log("dataStarter >>", json);
-      dataStarter = json2array(json);
-    });
+  var api = {
+    method: "get",
+    url: "https://smndb.vercel.app/data/d4k",
+  };
 
-  url = "https://smndb.vercel.app/data/alleluia";
-  fetch(url, settings)
-    .then((res) => res.json())
-    .then((json) => {
-      // do something with JSON
-      console.log("dataAlleluia >>", json);
-      dataAlleluia = json2array(json);
+  await axios(api)
+    .then(function (response) {
+      console.log("dataD4K >>", response);
+      const result = response.data;
+      dataD4K = result.data;
+    })
+    .catch(function (error) {
+      logger.error(error);
     });
 
   return {
     dataD4k: dataD4K,
-    dataStarter: dataStarter,
-    dataAlleluia: dataAlleluia,
+    //dataStarter: dataStarter,
+    //dataAlleluia: dataAlleluia,
   };
 };
 
