@@ -1,12 +1,13 @@
 const http = require("node:http");
 const axios = require("axios");
 const cards = require("./data.json");
+const listCard = require("./data/cards/cards");
 
 const hostname = "127.0.0.1";
 const port = 3000;
 
-let filter = cards.filter((o) => o.element == "earth");
-console.log("filter >>", filter);
+//let filter = cards.filter((o) => o.element == "earth");
+console.log("cards >>", listCard());
 
 // let dataD4K = [];
 

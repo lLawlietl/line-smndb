@@ -15,7 +15,7 @@ const noRegister = require("./templateReplys/noRegisterProject");
 
 const packs = require("./../../data/packs/packs.json");
 const promotions = require("./../../data/promotions/promotions.json");
-const cards = require("./../../data/cards/cards");
+const listCards = require("./../../data/cards/cards");
 
 config.channelAccessToken = configJS.CHANNEL_ACCESS_TOKEN;
 config.channelSecret = configJS.CHANNEL_SECRET;
@@ -154,10 +154,10 @@ const webhook = (req, res) => {
                   action: {
                     type: "message",
                     label: pack.label,
-                    text: `${type}-${pack.value}`,
+                    text: `#${type}-${pack.value}`,
                   },
                 });
-                console.log("objectPack >>", objectPack);
+                //console.log("objectPack >>", objectPack);
 
                 objectPack.push({
                   type: "separator",
@@ -169,12 +169,18 @@ const webhook = (req, res) => {
               cnt++;
             }
 
-            console.log("libraryTemplate >>", libraryTemplate);
+            //console.log("libraryTemplate >>", libraryTemplate);
             return client.replyMessage(replyToken, libraryTemplate);
           } else if (text.trim().includes("-all")) {
             let type = text.trim().substring("-")[0];
-            let filter = cards.dataD4K.filter((o) => o.element == type);
-            consolee.log("filter >>", filter);
+            let filter = listCards().dataD4K.filter((o) => o.element == type);
+            let filter1 = listCards().dataStarter.filter(
+              (o) => o.element == type
+            );
+            let filter2 = listCards().dataAlleluia.filter(
+              (o) => o.element == type
+            );
+            //consolee.log("filter >>", filter);
             let object = [];
             for (data of filter) {
               object.push({
@@ -192,6 +198,41 @@ const webhook = (req, res) => {
                 },
               });
             }
+
+            for (data of filter1) {
+              object.push({
+                type: "bubble",
+                action: {
+                  type: "uri",
+                  uri: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`,
+                },
+                hero: {
+                  type: "image",
+                  url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`,
+                  size: "full",
+                  aspectRatio: "10:15",
+                  aspectMode: "fit",
+                },
+              });
+            }
+
+            for (data of filter2) {
+              object.push({
+                type: "bubble",
+                action: {
+                  type: "uri",
+                  uri: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`,
+                },
+                hero: {
+                  type: "image",
+                  url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`,
+                  size: "full",
+                  aspectRatio: "10:15",
+                  aspectMode: "fit",
+                },
+              });
+            }
+
             return client.replyMessage(replyToken, {
               type: "flex",
               altText: "Response message",
@@ -201,49 +242,9 @@ const webhook = (req, res) => {
               },
             });
           } else {
-            // return client.replyMessage(replyToken, {
-            //   type: "text",
-            //   text: "สวัสดีครับ พิมพ์ smn เพื่อเริ่มใช้งานได้เลยครับ",
-            // });
-            let object = [];
-
-            object.push({
-              type: "bubble",
-              action: {
-                type: "uri",
-                uri: `https://github.com/lLawlietl/line-smndb/blob/2a9c8dcd4196d33b359f91ed3e6f412e04a71cfa/src/images/021.jpg`,
-              },
-              hero: {
-                type: "image",
-                url: `https://github.com/lLawlietl/line-smndb/blob/2a9c8dcd4196d33b359f91ed3e6f412e04a71cfa/src/images/021.jpg`,
-                size: "full",
-                aspectRatio: "10:15",
-                aspectMode: "fit",
-              },
-            });
-
-            object.push({
-              type: "bubble",
-              action: {
-                type: "uri",
-                uri: `https://github.com/lLawlietl/line-smndb/blob/master/src/images/021.jpg`,
-              },
-              hero: {
-                type: "image",
-                url: `https://github.com/lLawlietl/line-smndb/blob/master/src/images/021.jpg`,
-                size: "full",
-                aspectRatio: "10:15",
-                aspectMode: "fit",
-              },
-            });
-
             return client.replyMessage(replyToken, {
-              type: "flex",
-              altText: "Response message",
-              contents: {
-                type: "carousel",
-                contents: object,
-              },
+              type: "text",
+              text: "สวัสดีครับ พิมพ์ smn เพื่อเริ่มใช้งานได้เลยครับ",
             });
           }
 

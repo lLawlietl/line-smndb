@@ -1,15 +1,18 @@
 const axios = require("axios");
+const dataD4K = require("./mockD4K.json");
+const dataStarter = require("./mockStarter.json");
+const dataAlleluia = require("./mockAlleluia.json");
 
-const listCard = async () => {
+const listCard = () => {
   // https://smndb.vercel.app/data/d4k
   // https://smndb.vercel.app/data/starter
   // https://smndb.vercel.app/data/alleluia
 
-  let dataD4K = [];
-  let dataStarter = [];
-  let dataAlleluia = [];
+  // let dataD4K = [];
+  // let dataStarter = [];
+  // let dataAlleluia = [];
 
-  let url = "https://smndb.vercel.app/data/d4k";
+  // let url = "https://smndb.vercel.app/data/d4k";
 
   // fetch(url, settings)
   //   .then((res) => res.json())
@@ -19,25 +22,25 @@ const listCard = async () => {
   //     dataD4K = json2array(json);
   //   });
 
-  var api = {
-    method: "get",
-    url: "https://smndb.vercel.app/data/d4k",
-  };
+  // var api = {
+  //   method: "get",
+  //   url: "https://smndb.vercel.app/data/d4k",
+  // };
 
-  await axios(api)
-    .then(function (response) {
-      console.log("dataD4K >>", response);
-      const result = response.data;
-      dataD4K = result.data;
-    })
-    .catch(function (error) {
-      console.log("error >>", error);
-    });
+  // await axios(api)
+  //   .then(function (response) {
+  //     console.log("dataD4K >>", response);
+  //     const result = response.data;
+  //     dataD4K = result.data;
+  //   })
+  //   .catch(function (error) {
+  //     console.log("error >>", error);
+  //   });
 
   return {
     dataD4k: dataD4K,
-    //dataStarter: dataStarter,
-    //dataAlleluia: dataAlleluia,
+    dataStarter: dataStarter,
+    dataAlleluia: dataAlleluia,
   };
 };
 
