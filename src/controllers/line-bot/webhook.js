@@ -186,16 +186,16 @@ const webhook = (req, res) => {
             let object = [];
             let cnt = 0;
             for (data of filter) {
-              if (cnt < 10) {
+              if (cnt < 30) {
                 object.push({
                   type: "bubble",
                   action: {
                     type: "uri",
-                    uri: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`,
+                    uri: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`.toLowerCase(),
                   },
                   hero: {
                     type: "image",
-                    url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`,
+                    url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`.toLowerCase(),
                     size: "full",
                     aspectRatio: "10:15",
                     aspectMode: "fit",
