@@ -22,7 +22,7 @@ config.channelSecret = configJS.CHANNEL_SECRET;
 
 const client = new line.Client(config);
 
-const webhook = (req, res) => {
+const webhook = async (req, res) => {
   if (!Array.isArray(req.body.events)) {
     return res.status(500).end();
   }
@@ -371,7 +371,7 @@ const webhook = (req, res) => {
               },
             };
 
-            return client.replyMessage(replyToken, xxx);
+            return await client.replyMessage(replyToken, xxx);
           } else {
             return client.replyMessage(replyToken, {
               type: "text",
