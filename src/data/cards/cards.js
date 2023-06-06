@@ -16,7 +16,8 @@ const listCard = () => {
     .then((res) => res.json())
     .then((json) => {
       // do something with JSON
-      dataD4K = json;
+      console.log("dataD4K >>", json);
+      dataD4K = json2array(json);
     });
 
   url = "https://smndb.vercel.app/data/starter";
@@ -24,7 +25,8 @@ const listCard = () => {
     .then((res) => res.json())
     .then((json) => {
       // do something with JSON
-      dataStarter = json;
+      console.log("dataStarter >>", json);
+      dataStarter = json2array(json);
     });
 
   url = "https://smndb.vercel.app/data/alleluia";
@@ -32,7 +34,8 @@ const listCard = () => {
     .then((res) => res.json())
     .then((json) => {
       // do something with JSON
-      dataAlleluia = json;
+      console.log("dataAlleluia >>", json);
+      dataAlleluia = json2array(json);
     });
 
   return {
@@ -40,6 +43,15 @@ const listCard = () => {
     dataStarter: dataStarter,
     dataAlleluia: dataAlleluia,
   };
+};
+
+const json2array = (json) => {
+  var result = [];
+  var keys = Object.keys(json);
+  keys.forEach(function (key) {
+    result.push(json[key]);
+  });
+  return result;
 };
 
 module.exports = listCard;
