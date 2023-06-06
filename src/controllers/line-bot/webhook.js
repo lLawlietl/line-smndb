@@ -254,77 +254,198 @@ const webhook = (req, res) => {
             //   },
             // };
 
+            // const xxx = {
+            //   type: "bubble",
+            //   header: {
+            //     type: "box",
+            //     layout: "horizontal",
+            //     contents: [
+            //       {
+            //         type: "text",
+            //         text: "NEWS DIGEST",
+            //         weight: "bold",
+            //         size: "sm",
+            //         color: "#AAAAAA",
+            //         contents: [],
+            //       },
+            //     ],
+            //   },
+            //   body: {
+            //     type: "box",
+            //     layout: "horizontal",
+            //     spacing: "md",
+            //     contents: [
+            //       {
+            //         type: "box",
+            //         layout: "vertical",
+            //         flex: 1,
+            //         contents: [
+            //           {
+            //             type: "image",
+            //             url: "https://scdn.line-apps.com/n/channel_devcenter/img/fx/02_1_news_thumbnail_1.png",
+            //             margin: "none",
+            //             gravity: "bottom",
+            //             size: "sm",
+            //             aspectRatio: "4:5",
+            //             aspectMode: "cover",
+            //           },
+            //           {
+            //             type: "image",
+            //             url: "https://scdn.line-apps.com/n/channel_devcenter/img/fx/02_1_news_thumbnail_2.png",
+            //             margin: "md",
+            //             size: "sm",
+            //             aspectRatio: "4:5",
+            //             aspectMode: "cover",
+            //           },
+            //         ],
+            //       },
+            //       {
+            //         type: "box",
+            //         layout: "vertical",
+            //         flex: 2,
+            //         contents: [
+            //           {
+            //             type: "text",
+            //             text: "7 Things to Know for Today",
+            //             size: "xs",
+            //             flex: 1,
+            //             gravity: "center",
+            //             contents: [],
+            //           },
+            //           {
+            //             type: "separator",
+            //           },
+            //           {
+            //             type: "text",
+            //             text: "LINE Adds LINE Wallet",
+            //             size: "xs",
+            //             flex: 1,
+            //             align: "start",
+            //             gravity: "center",
+            //             contents: [],
+            //           },
+            //         ],
+            //       },
+            //     ],
+            //   },
+            // };
+
             const xxx = {
               type: "bubble",
-              header: {
+              hero: {
+                type: "image",
+                url: "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_2_restaurant.png",
+                size: "full",
+                aspectRatio: "20:13",
+                aspectMode: "cover",
+                action: {
+                  type: "uri",
+                  label: "Action",
+                  uri: "https://linecorp.com",
+                },
+              },
+              body: {
                 type: "box",
-                layout: "horizontal",
+                layout: "vertical",
+                spacing: "md",
+                action: {
+                  type: "uri",
+                  label: "Action",
+                  uri: "https://linecorp.com",
+                },
                 contents: [
                   {
                     type: "text",
-                    text: "NEWS DIGEST",
+                    text: "Brown's Burger",
                     weight: "bold",
-                    size: "sm",
+                    size: "xl",
+                    contents: [],
+                  },
+                  {
+                    type: "box",
+                    layout: "vertical",
+                    spacing: "sm",
+                    contents: [
+                      {
+                        type: "box",
+                        layout: "baseline",
+                        contents: [
+                          {
+                            type: "icon",
+                            url: "https://scdn.line-apps.com/n/channel_devcenter/img/fx/restaurant_regular_32.png",
+                          },
+                          {
+                            type: "text",
+                            text: "$10.5",
+                            weight: "bold",
+                            margin: "sm",
+                            contents: [],
+                          },
+                          {
+                            type: "text",
+                            text: "400kcl",
+                            size: "sm",
+                            color: "#AAAAAA",
+                            align: "end",
+                            contents: [],
+                          },
+                        ],
+                      },
+                      {
+                        type: "box",
+                        layout: "baseline",
+                        contents: [
+                          {
+                            type: "icon",
+                            url: "https://scdn.line-apps.com/n/channel_devcenter/img/fx/restaurant_large_32.png",
+                          },
+                          {
+                            type: "text",
+                            text: "$15.5",
+                            weight: "bold",
+                            flex: 0,
+                            margin: "sm",
+                            contents: [],
+                          },
+                          {
+                            type: "text",
+                            text: "550kcl",
+                            size: "sm",
+                            color: "#AAAAAA",
+                            align: "end",
+                            contents: [],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    type: "text",
+                    text: "Sauce, Onions, Pickles, Lettuce & Cheese",
+                    size: "xxs",
                     color: "#AAAAAA",
+                    wrap: true,
                     contents: [],
                   },
                 ],
               },
-              body: {
+              footer: {
                 type: "box",
-                layout: "horizontal",
-                spacing: "md",
+                layout: "vertical",
                 contents: [
                   {
-                    type: "box",
-                    layout: "vertical",
-                    flex: 1,
-                    contents: [
-                      {
-                        type: "image",
-                        url: "https://scdn.line-apps.com/n/channel_devcenter/img/fx/02_1_news_thumbnail_1.png",
-                        margin: "none",
-                        gravity: "bottom",
-                        size: "sm",
-                        aspectRatio: "4:5",
-                        aspectMode: "cover",
-                      },
-                      {
-                        type: "image",
-                        url: "https://scdn.line-apps.com/n/channel_devcenter/img/fx/02_1_news_thumbnail_2.png",
-                        margin: "md",
-                        size: "sm",
-                        aspectRatio: "4:5",
-                        aspectMode: "cover",
-                      },
-                    ],
+                    type: "spacer",
+                    size: "xxl",
                   },
                   {
-                    type: "box",
-                    layout: "vertical",
-                    flex: 2,
-                    contents: [
-                      {
-                        type: "text",
-                        text: "7 Things to Know for Today",
-                        size: "xs",
-                        flex: 1,
-                        gravity: "center",
-                        contents: [],
-                      },
-                      {
-                        type: "separator",
-                      },
-                      {
-                        type: "text",
-                        text: "LINE Adds LINE Wallet",
-                        size: "xs",
-                        flex: 1,
-                        align: "start",
-                        gravity: "center",
-                        contents: [],
-                      },
-                    ],
+                    type: "button",
+                    action: {
+                      type: "uri",
+                      label: "Add to Cart",
+                      uri: "https://linecorp.com",
+                    },
+                    color: "#905C44",
+                    style: "primary",
                   },
                 ],
               },
