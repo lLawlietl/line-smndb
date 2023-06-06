@@ -184,21 +184,26 @@ const webhook = (req, res) => {
             // );
             //consolee.log("filter >>", filter);
             let object = [];
+            let cnt = 0;
             for (data of filter) {
-              object.push({
-                type: "bubble",
-                action: {
-                  type: "uri",
-                  uri: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`,
-                },
-                hero: {
-                  type: "image",
-                  url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`,
-                  size: "full",
-                  aspectRatio: "10:15",
-                  aspectMode: "fit",
-                },
-              });
+              if (cnt < 10) {
+                object.push({
+                  type: "bubble",
+                  action: {
+                    type: "uri",
+                    uri: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`,
+                  },
+                  hero: {
+                    type: "image",
+                    url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`,
+                    size: "full",
+                    aspectRatio: "10:15",
+                    aspectMode: "fit",
+                  },
+                });
+
+                cnt++;
+              }
             }
 
             // for (data of filter1) {
