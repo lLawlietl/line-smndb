@@ -201,9 +201,49 @@ const webhook = (req, res) => {
               },
             });
           } else {
+            // return client.replyMessage(replyToken, {
+            //   type: "text",
+            //   text: "สวัสดีครับ พิมพ์ smn เพื่อเริ่มใช้งานได้เลยครับ",
+            // });
+            let object = [];
+
+            object.push({
+              type: "bubble",
+              action: {
+                type: "uri",
+                uri: `https://github.com/lLawlietl/line-smndb/blob/2a9c8dcd4196d33b359f91ed3e6f412e04a71cfa/src/images/021.jpg`,
+              },
+              hero: {
+                type: "image",
+                url: `https://github.com/lLawlietl/line-smndb/blob/2a9c8dcd4196d33b359f91ed3e6f412e04a71cfa/src/images/021.jpg`,
+                size: "full",
+                aspectRatio: "10:15",
+                aspectMode: "fit",
+              },
+            });
+
+            object.push({
+              type: "bubble",
+              action: {
+                type: "uri",
+                uri: `https://github.com/lLawlietl/line-smndb/blob/master/src/images/021.jpg`,
+              },
+              hero: {
+                type: "image",
+                url: `https://github.com/lLawlietl/line-smndb/blob/master/src/images/021.jpg`,
+                size: "full",
+                aspectRatio: "10:15",
+                aspectMode: "fit",
+              },
+            });
+
             return client.replyMessage(replyToken, {
-              type: "text",
-              text: "สวัสดีครับ พิมพ์ smn เพื่อเริ่มใช้งานได้เลยครับ",
+              type: "flex",
+              altText: "Response message",
+              contents: {
+                type: "carousel",
+                contents: object,
+              },
             });
           }
 
