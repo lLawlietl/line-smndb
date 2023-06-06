@@ -186,7 +186,7 @@ const webhook = (req, res) => {
             let object = [];
             let cnt = 0;
             for (data of filter) {
-              if (cnt < 30) {
+              if (cnt < 12) {
                 object.push({
                   type: "bubble",
                   action: {
