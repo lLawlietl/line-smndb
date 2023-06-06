@@ -1,7 +1,7 @@
 const axios = require("axios");
-const dataD4K = require("./mockD4K.json");
-const dataStarter = require("./mockStarter.json");
-const dataAlleluia = require("./mockAlleluia.json");
+const mockD4K = require("./mockD4K.json");
+const mockStarter = require("./mockStarter.json");
+const mockAlleluia = require("./mockAlleluia.json");
 
 const listCard = () => {
   // https://smndb.vercel.app/data/d4k
@@ -38,9 +38,9 @@ const listCard = () => {
   //   });
 
   return {
-    dataD4k: dataD4K,
-    dataStarter: dataStarter,
-    dataAlleluia: dataAlleluia,
+    dataD4K: mockD4K,
+    dataStarter: mockStarter,
+    dataAlleluia: mockAlleluia,
   };
 };
 
