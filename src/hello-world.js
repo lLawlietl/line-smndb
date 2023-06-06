@@ -6,9 +6,64 @@ const listCards = require("./data/cards/cards");
 const hostname = "127.0.0.1";
 const port = 3000;
 
-console.log("cards >>", listCards().xxx);
-let filter = listCards().xxx.filter((o) => o.element == "earth");
+//console.log("cards >>", listCards().xxx);
+let filter = listCards().dataD4K.filter((o) => o.element == "earth");
+let filter1 = listCards().dataStarter.filter((o) => o.element == "earth");
+let filter2 = listCards().dataAlleluia.filter((o) => o.element == "earth");
+//consolee.log("filter >>", filter);
+let object = [];
+for (data of filter) {
+  object.push({
+    type: "bubble",
+    action: {
+      type: "uri",
+      uri: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`,
+    },
+    hero: {
+      type: "image",
+      url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`,
+      size: "full",
+      aspectRatio: "10:15",
+      aspectMode: "fit",
+    },
+  });
+}
 
+for (data of filter1) {
+  object.push({
+    type: "bubble",
+    action: {
+      type: "uri",
+      uri: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`,
+    },
+    hero: {
+      type: "image",
+      url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`,
+      size: "full",
+      aspectRatio: "10:15",
+      aspectMode: "fit",
+    },
+  });
+}
+
+for (data of filter2) {
+  object.push({
+    type: "bubble",
+    action: {
+      type: "uri",
+      uri: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`,
+    },
+    hero: {
+      type: "image",
+      url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`,
+      size: "full",
+      aspectRatio: "10:15",
+      aspectMode: "fit",
+    },
+  });
+}
+
+console.log("object >>", object);
 // let dataD4K = [];
 
 // var api = {

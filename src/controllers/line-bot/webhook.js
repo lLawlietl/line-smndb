@@ -173,13 +173,15 @@ const webhook = (req, res) => {
             return client.replyMessage(replyToken, libraryTemplate);
           } else if (text.trim().includes("-all")) {
             let type = text.trim().substring("-")[0];
-            let filter = listCards().dataD4K.filter((o) => o.element == type);
-            let filter1 = listCards().dataStarter.filter(
-              (o) => o.element == type
+            let filter = listCards().dataD4K.filter(
+              (o) => o.element == "earth"
             );
-            let filter2 = listCards().dataAlleluia.filter(
-              (o) => o.element == type
-            );
+            // let filter1 = listCards().dataStarter.filter(
+            //   (o) => o.element == type
+            // );
+            // let filter2 = listCards().dataAlleluia.filter(
+            //   (o) => o.element == type
+            // );
             //consolee.log("filter >>", filter);
             let object = [];
             for (data of filter) {
@@ -199,39 +201,39 @@ const webhook = (req, res) => {
               });
             }
 
-            for (data of filter1) {
-              object.push({
-                type: "bubble",
-                action: {
-                  type: "uri",
-                  uri: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`,
-                },
-                hero: {
-                  type: "image",
-                  url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`,
-                  size: "full",
-                  aspectRatio: "10:15",
-                  aspectMode: "fit",
-                },
-              });
-            }
+            // for (data of filter1) {
+            //   object.push({
+            //     type: "bubble",
+            //     action: {
+            //       type: "uri",
+            //       uri: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`,
+            //     },
+            //     hero: {
+            //       type: "image",
+            //       url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`,
+            //       size: "full",
+            //       aspectRatio: "10:15",
+            //       aspectMode: "fit",
+            //     },
+            //   });
+            // }
 
-            for (data of filter2) {
-              object.push({
-                type: "bubble",
-                action: {
-                  type: "uri",
-                  uri: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`,
-                },
-                hero: {
-                  type: "image",
-                  url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`,
-                  size: "full",
-                  aspectRatio: "10:15",
-                  aspectMode: "fit",
-                },
-              });
-            }
+            // for (data of filter2) {
+            //   object.push({
+            //     type: "bubble",
+            //     action: {
+            //       type: "uri",
+            //       uri: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`,
+            //     },
+            //     hero: {
+            //       type: "image",
+            //       url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`,
+            //       size: "full",
+            //       aspectRatio: "10:15",
+            //       aspectMode: "fit",
+            //     },
+            //   });
+            // }
 
             return client.replyMessage(replyToken, {
               type: "flex",
