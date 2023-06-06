@@ -188,34 +188,71 @@ const webhook = (req, res) => {
             let contentImages = [];
             let contentMessages = [];
             let cnt = 0;
-            for (data of filter) {
-              if (cnt < 10) {
-                contentImages.push({
-                  type: "image",
-                  url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`.toLowerCase(),
-                  margin: cnt == 0 ? "none" : "md",
-                  gravity: "bottom",
-                  size: "sm",
-                  aspectRatio: "4:5",
-                  aspectMode: "cover",
-                });
+            // for (data of filter) {
+            //   if (cnt < 10) {
+            //     contentImages.push({
+            //       type: "image",
+            //       url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`.toLowerCase(),
+            //       margin: cnt == 0 ? "none" : "md",
+            //       gravity: "bottom",
+            //       size: "sm",
+            //       aspectRatio: "4:5",
+            //       aspectMode: "cover",
+            //     });
 
-                contentMessages.push({
-                  type: "text",
-                  text: `${data.name}`,
-                  size: "xs",
-                  flex: 1,
-                  gravity: "center",
-                  contents: [],
-                });
+            //     contentMessages.push({
+            //       type: "text",
+            //       text: `${data.name}`,
+            //       size: "xs",
+            //       flex: 1,
+            //       gravity: "center",
+            //       contents: [],
+            //     });
 
-                contentMessages.push({
-                  type: "separator",
-                });
+            //     contentMessages.push({
+            //       type: "separator",
+            //     });
 
-                cnt++;
-              }
-            }
+            //     cnt++;
+            //   }
+            // }
+
+            // const xxx = {
+            //   type: "bubble",
+            //   header: {
+            //     type: "box",
+            //     layout: "horizontal",
+            //     contents: [
+            //       {
+            //         type: "text",
+            //         text: "EARTH",
+            //         weight: "bold",
+            //         size: "sm",
+            //         color: "#AAAAAA",
+            //         contents: [],
+            //       },
+            //     ],
+            //   },
+            //   body: {
+            //     type: "box",
+            //     layout: "horizontal",
+            //     spacing: "md",
+            //     contents: [
+            //       {
+            //         type: "box",
+            //         layout: "vertical",
+            //         flex: 1,
+            //         contents: contentImages,
+            //       },
+            //       {
+            //         type: "box",
+            //         layout: "vertical",
+            //         flex: 2,
+            //         contents: contentMessages,
+            //       },
+            //     ],
+            //   },
+            // };
 
             const xxx = {
               type: "bubble",
@@ -225,7 +262,7 @@ const webhook = (req, res) => {
                 contents: [
                   {
                     type: "text",
-                    text: "EARTH",
+                    text: "NEWS DIGEST",
                     weight: "bold",
                     size: "sm",
                     color: "#AAAAAA",
@@ -242,13 +279,52 @@ const webhook = (req, res) => {
                     type: "box",
                     layout: "vertical",
                     flex: 1,
-                    contents: contentImages,
+                    contents: [
+                      {
+                        type: "image",
+                        url: "https://scdn.line-apps.com/n/channel_devcenter/img/fx/02_1_news_thumbnail_1.png",
+                        margin: "none",
+                        gravity: "bottom",
+                        size: "sm",
+                        aspectRatio: "4:5",
+                        aspectMode: "cover",
+                      },
+                      {
+                        type: "image",
+                        url: "https://scdn.line-apps.com/n/channel_devcenter/img/fx/02_1_news_thumbnail_2.png",
+                        margin: "md",
+                        size: "sm",
+                        aspectRatio: "4:5",
+                        aspectMode: "cover",
+                      },
+                    ],
                   },
                   {
                     type: "box",
                     layout: "vertical",
                     flex: 2,
-                    contents: contentMessages,
+                    contents: [
+                      {
+                        type: "text",
+                        text: "7 Things to Know for Today",
+                        size: "xs",
+                        flex: 1,
+                        gravity: "center",
+                        contents: [],
+                      },
+                      {
+                        type: "separator",
+                      },
+                      {
+                        type: "text",
+                        text: "LINE Adds LINE Wallet",
+                        size: "xs",
+                        flex: 1,
+                        align: "start",
+                        gravity: "center",
+                        contents: [],
+                      },
+                    ],
                   },
                 ],
               },
