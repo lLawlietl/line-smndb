@@ -184,70 +184,77 @@ const webhook = (req, res) => {
             // );
             //consolee.log("filter >>", filter);
             let object = [];
+
+            let contentImages = [];
+            let contentMessages = [];
             let cnt = 0;
             for (data of filter) {
-              if (cnt < 12) {
-                object.push({
-                  type: "bubble",
-                  action: {
-                    type: "uri",
-                    uri: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`.toLowerCase(),
-                  },
-                  hero: {
-                    type: "image",
-                    url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`.toLowerCase(),
-                    size: "full",
-                    aspectRatio: "10:15",
-                    aspectMode: "fit",
-                  },
+              if (cnt < 20) {
+                contentImages.push({
+                  type: "image",
+                  url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`.toLowerCase(),
+                  margin: cnt == 0 ? "none" : "md",
+                  gravity: "bottom",
+                  size: "sm",
+                  aspectRatio: "4:5",
+                  aspectMode: "cover",
+                });
+
+                contentMessages.push({
+                  type: "text",
+                  text: `${data.name}`,
+                  size: "xs",
+                  flex: 1,
+                  gravity: "center",
+                  contents: [],
+                });
+
+                contentMessages.push({
+                  type: "separator",
                 });
 
                 cnt++;
               }
             }
 
-            // for (data of filter1) {
-            //   object.push({
-            //     type: "bubble",
-            //     action: {
-            //       type: "uri",
-            //       uri: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`,
-            //     },
-            //     hero: {
-            //       type: "image",
-            //       url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`,
-            //       size: "full",
-            //       aspectRatio: "10:15",
-            //       aspectMode: "fit",
-            //     },
-            //   });
-            // }
-
-            // for (data of filter2) {
-            //   object.push({
-            //     type: "bubble",
-            //     action: {
-            //       type: "uri",
-            //       uri: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`,
-            //     },
-            //     hero: {
-            //       type: "image",
-            //       url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`,
-            //       size: "full",
-            //       aspectRatio: "10:15",
-            //       aspectMode: "fit",
-            //     },
-            //   });
-            // }
-
-            return client.replyMessage(replyToken, {
-              type: "flex",
-              altText: "Response message",
-              contents: {
-                type: "carousel",
-                contents: object,
+            const xxx = {
+              type: "bubble",
+              header: {
+                type: "box",
+                layout: "horizontal",
+                contents: [
+                  {
+                    type: "text",
+                    text: "EARTH",
+                    weight: "bold",
+                    size: "sm",
+                    color: "#AAAAAA",
+                    contents: [],
+                  },
+                ],
               },
-            });
+              body: {
+                type: "box",
+                layout: "horizontal",
+                spacing: "md",
+                contents: [
+                  {
+                    type: "box",
+                    layout: "vertical",
+                    flex: 1,
+                    contents: contentImages,
+                  },
+                  {
+                    type: "box",
+                    layout: "vertical",
+                    flex: 2,
+                    contents: contentMessages,
+                  },
+                ],
+              },
+            };
+
+            return client.replyMessage(replyToken, xxx);
           } else {
             return client.replyMessage(replyToken, {
               type: "text",
