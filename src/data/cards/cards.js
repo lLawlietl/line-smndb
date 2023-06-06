@@ -31,7 +31,7 @@ const listCard = async () => {
       dataD4K = result.data;
     })
     .catch(function (error) {
-      logger.error(error);
+      console.log("error >>", error);
     });
 
   return {
