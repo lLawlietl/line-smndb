@@ -189,7 +189,7 @@ const webhook = (req, res) => {
             let contentMessages = [];
             let cnt = 0;
             for (data of filter) {
-              if (cnt < 20) {
+              if (cnt < 10) {
                 contentImages.push({
                   type: "image",
                   url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`.toLowerCase(),
