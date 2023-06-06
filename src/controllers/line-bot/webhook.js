@@ -188,71 +188,71 @@ const webhook = (req, res) => {
             let contentImages = [];
             let contentMessages = [];
             let cnt = 0;
-            // for (data of filter) {
-            //   if (cnt < 10) {
-            //     contentImages.push({
-            //       type: "image",
-            //       url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`.toLowerCase(),
-            //       margin: cnt == 0 ? "none" : "md",
-            //       gravity: "bottom",
-            //       size: "sm",
-            //       aspectRatio: "4:5",
-            //       aspectMode: "cover",
-            //     });
+            for (data of filter) {
+              if (cnt < 10) {
+                contentImages.push({
+                  type: "image",
+                  url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`.toLowerCase(),
+                  margin: cnt == 0 ? "none" : "md",
+                  gravity: "bottom",
+                  size: "sm",
+                  aspectRatio: "4:5",
+                  aspectMode: "cover",
+                });
 
-            //     contentMessages.push({
-            //       type: "text",
-            //       text: `${data.name}`,
-            //       size: "xs",
-            //       flex: 1,
-            //       gravity: "center",
-            //       contents: [],
-            //     });
+                contentMessages.push({
+                  type: "text",
+                  text: `${data.name}`,
+                  size: "xs",
+                  flex: 1,
+                  gravity: "center",
+                  contents: [],
+                });
 
-            //     contentMessages.push({
-            //       type: "separator",
-            //     });
+                contentMessages.push({
+                  type: "separator",
+                });
 
-            //     cnt++;
-            //   }
-            // }
+                cnt++;
+              }
+            }
 
-            // const xxx = {
-            //   type: "bubble",
-            //   header: {
-            //     type: "box",
-            //     layout: "horizontal",
-            //     contents: [
-            //       {
-            //         type: "text",
-            //         text: "EARTH",
-            //         weight: "bold",
-            //         size: "sm",
-            //         color: "#AAAAAA",
-            //         contents: [],
-            //       },
-            //     ],
-            //   },
-            //   body: {
-            //     type: "box",
-            //     layout: "horizontal",
-            //     spacing: "md",
-            //     contents: [
-            //       {
-            //         type: "box",
-            //         layout: "vertical",
-            //         flex: 1,
-            //         contents: contentImages,
-            //       },
-            //       {
-            //         type: "box",
-            //         layout: "vertical",
-            //         flex: 2,
-            //         contents: contentMessages,
-            //       },
-            //     ],
-            //   },
-            // };
+            const xxx = {
+              type: "bubble",
+              header: {
+                type: "box",
+                layout: "horizontal",
+                contents: [
+                  {
+                    type: "text",
+                    text: "EARTH",
+                    weight: "bold",
+                    size: "sm",
+                    color: "#AAAAAA",
+                    contents: [],
+                  },
+                ],
+              },
+              body: {
+                type: "box",
+                layout: "horizontal",
+                spacing: "md",
+                contents: [
+                  {
+                    type: "box",
+                    layout: "vertical",
+                    flex: 1,
+                    contents: contentImages,
+                  },
+                  {
+                    type: "box",
+                    layout: "vertical",
+                    flex: 2,
+                    contents: contentMessages,
+                  },
+                ],
+              },
+            };
 
             // const xxx = {
             //   type: "bubble",
@@ -330,46 +330,46 @@ const webhook = (req, res) => {
             //   },
             // };
 
-            const xxx = {
-              type: "bubble",
-              header: {
-                type: "box",
-                layout: "vertical",
-                contents: [
-                  {
-                    type: "text",
-                    text: "Header text",
-                  },
-                ],
-              },
-              hero: {
-                type: "image",
-                url: "https://example.com/flex/images/image.jpg",
-              },
-              body: {
-                type: "box",
-                layout: "vertical",
-                contents: [
-                  {
-                    type: "text",
-                    text: "Body text",
-                  },
-                ],
-              },
-              footer: {
-                type: "box",
-                layout: "vertical",
-                contents: [
-                  {
-                    type: "text",
-                    text: "Footer text",
-                  },
-                ],
-              },
-              styles: {
-                comment: "See the example of a bubble style object",
-              },
-            };
+            // const xxx = {
+            //   type: "bubble",
+            //   header: {
+            //     type: "box",
+            //     layout: "vertical",
+            //     contents: [
+            //       {
+            //         type: "text",
+            //         text: "Header text",
+            //       },
+            //     ],
+            //   },
+            //   hero: {
+            //     type: "image",
+            //     url: "https://example.com/flex/images/image.jpg",
+            //   },
+            //   body: {
+            //     type: "box",
+            //     layout: "vertical",
+            //     contents: [
+            //       {
+            //         type: "text",
+            //         text: "Body text",
+            //       },
+            //     ],
+            //   },
+            //   footer: {
+            //     type: "box",
+            //     layout: "vertical",
+            //     contents: [
+            //       {
+            //         type: "text",
+            //         text: "Footer text",
+            //       },
+            //     ],
+            //   },
+            //   styles: {
+            //     comment: "See the example of a bubble style object",
+            //   },
+            // };
 
             return client.replyMessage(replyToken, xxx);
           } else {
