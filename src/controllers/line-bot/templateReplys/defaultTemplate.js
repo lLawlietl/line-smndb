@@ -98,7 +98,7 @@ const defaultTemplate = {
         type: "bubble",
         hero: {
           type: "image",
-          url: "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_6_carousel.png",
+          url: "https://sv1.picz.in.th/images/2023/06/07/IzkFYg.jpg",
           size: "full",
           aspectRatio: "20:13",
           aspectMode: "cover",

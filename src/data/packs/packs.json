@@ -1,10 +1,6 @@
 {
     "data": [
         {
-            "label": "All",
-            "value": "all"
-        },
-        {
             "label": "D4K",
             "value": "d4k"
         },

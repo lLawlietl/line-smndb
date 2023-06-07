@@ -154,7 +154,7 @@ const webhook = async (req, res) => {
                   action: {
                     type: "message",
                     label: pack.label,
-                    text: `#${type}-${pack.value}`,
+                    text: `${type}-${pack.value}`,
                   },
                 });
                 //console.log("objectPack >>", objectPack);
@@ -171,18 +171,10 @@ const webhook = async (req, res) => {
 
             //console.log("libraryTemplate >>", libraryTemplate);
             return client.replyMessage(replyToken, libraryTemplate);
-          } else if (text.trim().includes("-all")) {
+          } else if (text.trim().includes("-d4k")) {
             let type = text.trim().substring("-")[0];
-            let xxx = await listCards();
-            console.log("xxx >>>", xxx);
-            let filter = xxx.dataD4K.filter((o) => o.element == "earth");
-            // let filter1 = listCards().dataStarter.filter(
-            //   (o) => o.element == type
-            // );
-            // let filter2 = listCards().dataAlleluia.filter(
-            //   (o) => o.element == type
-            // );
-            //consolee.log("filter >>", filter);
+            let list = await listCards();
+            let filter = list.dataD4K.filter((o) => o.element == type);
 
             let contentBubbles = [];
             let contentImages = [];
@@ -223,7 +215,7 @@ const webhook = async (req, res) => {
                     contents: [
                       {
                         type: "text",
-                        text: "NEWS DIGEST",
+                        text: text.trim(),
                         weight: "bold",
                         size: "sm",
                         color: "#AAAAAA",
@@ -290,7 +282,303 @@ const webhook = async (req, res) => {
                 contents: [
                   {
                     type: "text",
-                    text: "NEWS DIGEST",
+                    text: text.trim(),
+                    weight: "bold",
+                    size: "sm",
+                    color: "#AAAAAA",
+                    contents: [],
+                  },
+                ],
+              },
+              body: {
+                type: "box",
+                layout: "horizontal",
+                spacing: "md",
+                contents: [
+                  {
+                    type: "box",
+                    layout: "vertical",
+                    flex: 1,
+                    contents: contentImages,
+                  },
+                  {
+                    type: "box",
+                    layout: "vertical",
+                    flex: 2,
+                    contents: contentMessages,
+                  },
+                ],
+              },
+            });
+
+            return client.replyMessage(replyToken, {
+              type: "flex",
+              altText: "Response message",
+              contents: {
+                type: "carousel",
+                contents: contentBubbles,
+              },
+            });
+          } else if (text.trim().includes("-starter")) {
+            let type = text.trim().substring("-")[0];
+            let list = await listCards();
+            let filter = list.dataStarter.filter((o) => o.element == type);
+
+            let contentBubbles = [];
+            let contentImages = [];
+            let contentMessages = [];
+            let cnt = 0;
+            for (data of filter) {
+              if (cnt <= 10) {
+                contentImages.push({
+                  type: "image",
+                  url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`.toLowerCase(),
+                  margin: "none",
+                  gravity: "bottom",
+                  size: "sm",
+                  aspectRatio: "4:5",
+                  aspectMode: "cover",
+                });
+
+                contentMessages.push({
+                  type: "text",
+                  text: `${data.name}`,
+                  size: "xs",
+                  flex: 1,
+                  gravity: "center",
+                  contents: [],
+                });
+
+                contentMessages.push({
+                  type: "separator",
+                });
+
+                cnt++;
+              } else {
+                contentBubbles.push({
+                  type: "bubble",
+                  header: {
+                    type: "box",
+                    layout: "horizontal",
+                    contents: [
+                      {
+                        type: "text",
+                        text: text.trim(),
+                        weight: "bold",
+                        size: "sm",
+                        color: "#AAAAAA",
+                        contents: [],
+                      },
+                    ],
+                  },
+                  body: {
+                    type: "box",
+                    layout: "horizontal",
+                    spacing: "md",
+                    contents: [
+                      {
+                        type: "box",
+                        layout: "vertical",
+                        flex: 1,
+                        contents: contentImages,
+                      },
+                      {
+                        type: "box",
+                        layout: "vertical",
+                        flex: 2,
+                        contents: contentMessages,
+                      },
+                    ],
+                  },
+                });
+
+                contentImages = [];
+                contentMessages = [];
+
+                contentImages.push({
+                  type: "image",
+                  url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`.toLowerCase(),
+                  margin: "none",
+                  gravity: "bottom",
+                  size: "sm",
+                  aspectRatio: "4:5",
+                  aspectMode: "cover",
+                });
+
+                contentMessages.push({
+                  type: "text",
+                  text: `${data.name}`,
+                  size: "xs",
+                  flex: 1,
+                  gravity: "center",
+                  contents: [],
+                });
+
+                contentMessages.push({
+                  type: "separator",
+                });
+
+                cnt = 1;
+              }
+            }
+
+            contentBubbles.push({
+              type: "bubble",
+              header: {
+                type: "box",
+                layout: "horizontal",
+                contents: [
+                  {
+                    type: "text",
+                    text: text.trim(),
+                    weight: "bold",
+                    size: "sm",
+                    color: "#AAAAAA",
+                    contents: [],
+                  },
+                ],
+              },
+              body: {
+                type: "box",
+                layout: "horizontal",
+                spacing: "md",
+                contents: [
+                  {
+                    type: "box",
+                    layout: "vertical",
+                    flex: 1,
+                    contents: contentImages,
+                  },
+                  {
+                    type: "box",
+                    layout: "vertical",
+                    flex: 2,
+                    contents: contentMessages,
+                  },
+                ],
+              },
+            });
+
+            return client.replyMessage(replyToken, {
+              type: "flex",
+              altText: "Response message",
+              contents: {
+                type: "carousel",
+                contents: contentBubbles,
+              },
+            });
+          } else if (text.trim().includes("-alleluia")) {
+            let type = text.trim().substring("-")[0];
+            let list = await listCards();
+            let filter = list.dataAlleluia.filter((o) => o.element == type);
+
+            let contentBubbles = [];
+            let contentImages = [];
+            let contentMessages = [];
+            let cnt = 0;
+            for (data of filter) {
+              if (cnt <= 10) {
+                contentImages.push({
+                  type: "image",
+                  url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`.toLowerCase(),
+                  margin: "none",
+                  gravity: "bottom",
+                  size: "sm",
+                  aspectRatio: "4:5",
+                  aspectMode: "cover",
+                });
+
+                contentMessages.push({
+                  type: "text",
+                  text: `${data.name}`,
+                  size: "xs",
+                  flex: 1,
+                  gravity: "center",
+                  contents: [],
+                });
+
+                contentMessages.push({
+                  type: "separator",
+                });
+
+                cnt++;
+              } else {
+                contentBubbles.push({
+                  type: "bubble",
+                  header: {
+                    type: "box",
+                    layout: "horizontal",
+                    contents: [
+                      {
+                        type: "text",
+                        text: text.trim(),
+                        weight: "bold",
+                        size: "sm",
+                        color: "#AAAAAA",
+                        contents: [],
+                      },
+                    ],
+                  },
+                  body: {
+                    type: "box",
+                    layout: "horizontal",
+                    spacing: "md",
+                    contents: [
+                      {
+                        type: "box",
+                        layout: "vertical",
+                        flex: 1,
+                        contents: contentImages,
+                      },
+                      {
+                        type: "box",
+                        layout: "vertical",
+                        flex: 2,
+                        contents: contentMessages,
+                      },
+                    ],
+                  },
+                });
+
+                contentImages = [];
+                contentMessages = [];
+
+                contentImages.push({
+                  type: "image",
+                  url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`.toLowerCase(),
+                  margin: "none",
+                  gravity: "bottom",
+                  size: "sm",
+                  aspectRatio: "4:5",
+                  aspectMode: "cover",
+                });
+
+                contentMessages.push({
+                  type: "text",
+                  text: `${data.name}`,
+                  size: "xs",
+                  flex: 1,
+                  gravity: "center",
+                  contents: [],
+                });
+
+                contentMessages.push({
+                  type: "separator",
+                });
+
+                cnt = 1;
+              }
+            }
+
+            contentBubbles.push({
+              type: "bubble",
+              header: {
+                type: "box",
+                layout: "horizontal",
+                contents: [
+                  {
+                    type: "text",
+                    text: text.trim(),
                     weight: "bold",
                     size: "sm",
                     color: "#AAAAAA",
