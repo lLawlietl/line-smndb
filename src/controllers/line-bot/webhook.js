@@ -184,58 +184,149 @@ const webhook = async (req, res) => {
             // );
             //consolee.log("filter >>", filter);
 
+            let contentBubbles = [];
+            let contentImages = [];
             let contentMessages = [];
-            let cnt = 1;
+            let cnt = 0;
             for (data of filter) {
-              if (cnt <= 12) {
+              if (cnt <= 10) {
+                contentImages.push({
+                  type: "image",
+                  url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`.toLowerCase(),
+                  margin: "none",
+                  gravity: "bottom",
+                  size: "sm",
+                  aspectRatio: "4:5",
+                  aspectMode: "cover",
+                });
+
                 contentMessages.push({
-                  type: "bubble",
-                  action: {
-                    type: "uri",
-                    uri: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`.toLowerCase(),
-                  },
-                  hero: {
-                    type: "image",
-                    url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`.toLowerCase(),
-                    size: "full",
-                    aspectRatio: "10:15",
-                    aspectMode: "fit",
-                  },
+                  type: "text",
+                  text: `${data.name}`,
+                  size: "xs",
+                  flex: 1,
+                  gravity: "center",
+                  contents: [],
+                });
+
+                contentMessages.push({
+                  type: "separator",
                 });
 
                 cnt++;
               } else {
-                return client.replyMessage(replyToken, {
-                  type: "flex",
-                  altText: "Response message",
-                  contents: {
-                    type: "carousel",
-                    contents: contentMessages,
+                contentBubbles.push({
+                  type: "bubble",
+                  header: {
+                    type: "box",
+                    layout: "horizontal",
+                    contents: [
+                      {
+                        type: "text",
+                        text: "NEWS DIGEST",
+                        weight: "bold",
+                        size: "sm",
+                        color: "#AAAAAA",
+                        contents: [],
+                      },
+                    ],
+                  },
+                  body: {
+                    type: "box",
+                    layout: "horizontal",
+                    spacing: "md",
+                    contents: [
+                      {
+                        type: "box",
+                        layout: "vertical",
+                        flex: 1,
+                        contents: contentImages,
+                      },
+                      {
+                        type: "box",
+                        layout: "vertical",
+                        flex: 2,
+                        contents: contentMessages,
+                      },
+                    ],
                   },
                 });
 
+                contentImages = [];
                 contentMessages = [];
 
+                contentImages.push({
+                  type: "image",
+                  url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`.toLowerCase(),
+                  margin: "none",
+                  gravity: "bottom",
+                  size: "sm",
+                  aspectRatio: "4:5",
+                  aspectMode: "cover",
+                });
+
                 contentMessages.push({
-                  type: "bubble",
-                  action: {
-                    type: "uri",
-                    uri: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`.toLowerCase(),
-                  },
-                  hero: {
-                    type: "image",
-                    url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`.toLowerCase(),
-                    size: "full",
-                    aspectRatio: "10:15",
-                    aspectMode: "fit",
-                  },
+                  type: "text",
+                  text: `${data.name}`,
+                  size: "xs",
+                  flex: 1,
+                  gravity: "center",
+                  contents: [],
+                });
+
+                contentMessages.push({
+                  type: "separator",
                 });
 
                 cnt = 1;
               }
             }
 
-            //return client.replyMessage(replyToken, xxx);
+            contentBubbles.push({
+              type: "bubble",
+              header: {
+                type: "box",
+                layout: "horizontal",
+                contents: [
+                  {
+                    type: "text",
+                    text: "NEWS DIGEST",
+                    weight: "bold",
+                    size: "sm",
+                    color: "#AAAAAA",
+                    contents: [],
+                  },
+                ],
+              },
+              body: {
+                type: "box",
+                layout: "horizontal",
+                spacing: "md",
+                contents: [
+                  {
+                    type: "box",
+                    layout: "vertical",
+                    flex: 1,
+                    contents: contentImages,
+                  },
+                  {
+                    type: "box",
+                    layout: "vertical",
+                    flex: 2,
+                    contents: contentMessages,
+                  },
+                ],
+              },
+            });
+
+            return client.replyMessage(replyToken, {
+              type: "flex",
+              altText: "Response message",
+              contents: {
+                type: "carousel",
+                contents: contentBubbles,
+              },
+            });
           } else {
             return client.replyMessage(replyToken, {
               type: "text",
