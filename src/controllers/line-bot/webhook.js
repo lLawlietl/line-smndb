@@ -205,7 +205,7 @@ const webhook = async (req, res) => {
 
                 cnt++;
               } else {
-                client.replyMessage(replyToken, {
+                return client.replyMessage(replyToken, {
                   type: "flex",
                   altText: "Response message",
                   contents: {
