@@ -237,6 +237,7 @@ const webhook = async (req, res) => {
                         type: "box",
                         layout: "vertical",
                         flex: 2,
+                        position: "relative",
                         contents: contentMessages,
                       },
                     ],
@@ -304,6 +305,7 @@ const webhook = async (req, res) => {
                     type: "box",
                     layout: "vertical",
                     flex: 2,
+                    position: "relative",
                     contents: contentMessages,
                   },
                 ],
@@ -311,6 +313,7 @@ const webhook = async (req, res) => {
             });
 
             console.log("contentBubbles >>", contentBubbles);
+
             return client.replyMessage(replyToken, {
               type: "flex",
               altText: "Response message",
