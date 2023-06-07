@@ -99,29 +99,15 @@ const defaultTemplate = {
         hero: {
           type: "image",
           url: "https://sv1.picz.in.th/images/2023/06/07/IzkFYg.jpg",
+          align: "center",
           size: "full",
-          aspectRatio: "20:13",
+          aspectRatio: "15:15",
           aspectMode: "cover",
-        },
-        body: {
-          type: "box",
-          layout: "vertical",
-          spacing: "sm",
-          contents: [
-            {
-              type: "text",
-              text: "โปรโมชันซองแลกการ์ด",
-              weight: "bold",
-              size: "xl",
-              wrap: true,
-              action: {
-                type: "message",
-                label: "Promotions",
-                text: "#promotion",
-              },
-              contents: [],
-            },
-          ],
+          action: {
+            type: "message",
+            label: "Ban",
+            text: "#promotion",
+          },
         },
       },
       {
