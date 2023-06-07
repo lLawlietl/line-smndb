@@ -171,7 +171,7 @@ const webhook = async (req, res) => {
             return client.replyMessage(replyToken, libraryTemplate);
           } else if (text.trim().includes("-d4k")) {
             console.log("d4k>>");
-            let type = text.trim().substring("-")[0];
+            let type = text.trim().split("-")[0];
             let list = await listCards();
             let filter = list.dataD4K.filter((o) => o.element == type);
             console.log("filter>>", filter);
@@ -319,7 +319,7 @@ const webhook = async (req, res) => {
               },
             });
           } else if (text.trim().includes("-starter")) {
-            let type = text.trim().substring("-")[0];
+            let type = text.trim().split("-")[0];
             let list = await listCards();
             let filter = list.dataStarter.filter((o) => o.element == type);
 
@@ -467,7 +467,7 @@ const webhook = async (req, res) => {
               },
             });
           } else if (text.trim().includes("-alleluia")) {
-            let type = text.trim().substring("-")[0];
+            let type = text.trim().split("-")[0];
             let list = await listCards();
             let filter = list.dataAlleluia.filter((o) => o.element == type);
 
