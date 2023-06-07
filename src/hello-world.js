@@ -9,8 +9,14 @@ const port = 3000;
 //listCards();
 //console.log("cards >>", listCards());
 
-let cnt = 1;
-const r = listCards();
+const xxx = async () => {
+  const r = await listCards();
+
+  console.log("cards >>", r.dataD4K);
+};
+
+xxx();
+
 // console.log("cards >>", typeof r);
 // for (item of r.dataD4K) {
 //   if (cnt <= 1) {

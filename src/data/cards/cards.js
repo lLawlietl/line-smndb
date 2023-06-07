@@ -28,7 +28,7 @@ const listCard = async () => {
       //   res.data.filter((o) => o.element == "earth")
       // );
       //cards.jsreturn json2array(res.data).filter((o) => o.element == "earth");
-      return res.data;
+      return res.data.filter((o) => o.element == "earth");
     })
     .catch(() => {});
 
