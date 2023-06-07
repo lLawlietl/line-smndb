@@ -173,7 +173,7 @@ const webhook = (req, res) => {
             return client.replyMessage(replyToken, libraryTemplate);
           } else if (text.trim().includes("-all")) {
             let type = text.trim().substring("-")[0];
-            let filter = listCards().dataD4K.filter(
+            let filter = await listCards().dataD4K.filter(
               (o) => o.element == "earth"
             );
             // let filter1 = listCards().dataStarter.filter(
@@ -183,195 +183,59 @@ const webhook = (req, res) => {
             //   (o) => o.element == type
             // );
             //consolee.log("filter >>", filter);
-            let object = [];
 
-            let contentImages = [];
             let contentMessages = [];
-            let cnt = 0;
+            let cnt = 1;
             for (data of filter) {
-              if (cnt < 10) {
-                contentImages.push({
-                  type: "image",
-                  url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`.toLowerCase(),
-                  margin: cnt == 0 ? "none" : "md",
-                  gravity: "bottom",
-                  size: "sm",
-                  aspectRatio: "4:5",
-                  aspectMode: "cover",
-                });
-
+              if (cnt <= 12) {
                 contentMessages.push({
-                  type: "text",
-                  text: `${data.name}`,
-                  size: "xs",
-                  flex: 1,
-                  gravity: "center",
-                  contents: [],
-                });
-
-                contentMessages.push({
-                  type: "separator",
+                  type: "bubble",
+                  action: {
+                    type: "uri",
+                    uri: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`.toLowerCase(),
+                  },
+                  hero: {
+                    type: "image",
+                    url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`.toLowerCase(),
+                    size: "full",
+                    aspectRatio: "10:15",
+                    aspectMode: "fit",
+                  },
                 });
 
                 cnt++;
+              } else {
+                client.replyMessage(replyToken, {
+                  type: "flex",
+                  altText: "Response message",
+                  contents: {
+                    type: "carousel",
+                    contents: contentMessages,
+                  },
+                });
+
+                contentMessages = [];
+
+                contentMessages.push({
+                  type: "bubble",
+                  action: {
+                    type: "uri",
+                    uri: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`.toLowerCase(),
+                  },
+                  hero: {
+                    type: "image",
+                    url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`.toLowerCase(),
+                    size: "full",
+                    aspectRatio: "10:15",
+                    aspectMode: "fit",
+                  },
+                });
+
+                cnt = 1;
               }
             }
 
-            const xxx = {
-              type: "bubble",
-              header: {
-                type: "box",
-                layout: "horizontal",
-                contents: [
-                  {
-                    type: "text",
-                    text: "EARTH",
-                    weight: "bold",
-                    size: "sm",
-                    color: "#AAAAAA",
-                    contents: [],
-                  },
-                ],
-              },
-              body: {
-                type: "box",
-                layout: "horizontal",
-                spacing: "md",
-                contents: [
-                  {
-                    type: "box",
-                    layout: "vertical",
-                    flex: 1,
-                    contents: contentImages,
-                  },
-                  {
-                    type: "box",
-                    layout: "vertical",
-                    flex: 2,
-                    contents: contentMessages,
-                  },
-                ],
-              },
-            };
-
-            // const xxx = {
-            //   type: "bubble",
-            //   header: {
-            //     type: "box",
-            //     layout: "horizontal",
-            //     contents: [
-            //       {
-            //         type: "text",
-            //         text: "NEWS DIGEST",
-            //         weight: "bold",
-            //         size: "sm",
-            //         color: "#AAAAAA",
-            //         contents: [],
-            //       },
-            //     ],
-            //   },
-            //   body: {
-            //     type: "box",
-            //     layout: "horizontal",
-            //     spacing: "md",
-            //     contents: [
-            //       {
-            //         type: "box",
-            //         layout: "vertical",
-            //         flex: 1,
-            //         contents: [
-            //           {
-            //             type: "image",
-            //             url: "https://scdn.line-apps.com/n/channel_devcenter/img/fx/02_1_news_thumbnail_1.png",
-            //             margin: "none",
-            //             gravity: "bottom",
-            //             size: "sm",
-            //             aspectRatio: "4:5",
-            //             aspectMode: "cover",
-            //           },
-            //           {
-            //             type: "image",
-            //             url: "https://scdn.line-apps.com/n/channel_devcenter/img/fx/02_1_news_thumbnail_2.png",
-            //             margin: "md",
-            //             size: "sm",
-            //             aspectRatio: "4:5",
-            //             aspectMode: "cover",
-            //           },
-            //         ],
-            //       },
-            //       {
-            //         type: "box",
-            //         layout: "vertical",
-            //         flex: 2,
-            //         contents: [
-            //           {
-            //             type: "text",
-            //             text: "7 Things to Know for Today",
-            //             size: "xs",
-            //             flex: 1,
-            //             gravity: "center",
-            //             contents: [],
-            //           },
-            //           {
-            //             type: "separator",
-            //           },
-            //           {
-            //             type: "text",
-            //             text: "LINE Adds LINE Wallet",
-            //             size: "xs",
-            //             flex: 1,
-            //             align: "start",
-            //             gravity: "center",
-            //             contents: [],
-            //           },
-            //         ],
-            //       },
-            //     ],
-            //   },
-            // };
-
-            // const xxx = {
-            //   type: "bubble",
-            //   header: {
-            //     type: "box",
-            //     layout: "vertical",
-            //     contents: [
-            //       {
-            //         type: "text",
-            //         text: "Header text",
-            //       },
-            //     ],
-            //   },
-            //   hero: {
-            //     type: "image",
-            //     url: "https://example.com/flex/images/image.jpg",
-            //   },
-            //   body: {
-            //     type: "box",
-            //     layout: "vertical",
-            //     contents: [
-            //       {
-            //         type: "text",
-            //         text: "Body text",
-            //       },
-            //     ],
-            //   },
-            //   footer: {
-            //     type: "box",
-            //     layout: "vertical",
-            //     contents: [
-            //       {
-            //         type: "text",
-            //         text: "Footer text",
-            //       },
-            //     ],
-            //   },
-            //   styles: {
-            //     comment: "See the example of a bubble style object",
-            //   },
-            // };
-
-            return client.replyMessage(replyToken, xxx);
+            //return client.replyMessage(replyToken, xxx);
           } else {
             return client.replyMessage(replyToken, {
               type: "text",

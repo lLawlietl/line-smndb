@@ -3,44 +3,41 @@ const mockD4K = require("./mockD4K.json");
 const mockStarter = require("./mockStarter.json");
 const mockAlleluia = require("./mockAlleluia.json");
 
-const listCard = () => {
-  // https://smndb.vercel.app/data/d4k
-  // https://smndb.vercel.app/data/starter
-  // https://smndb.vercel.app/data/alleluia
+const listCard = async () => {
+  //   https://smndb.vercel.app/data/d4k.json
+  // https://smndb.vercel.app/data/starter.json
+  // https://smndb.vercel.app/data/alleluia.json
 
-  // let dataD4K = [];
+  let responseD4K = [];
   // let dataStarter = [];
   // let dataAlleluia = [];
 
-  // let url = "https://smndb.vercel.app/data/d4k";
+  //return json2array(mockD4K);
 
-  // fetch(url, settings)
-  //   .then((res) => res.json())
-  //   .then((json) => {
-  //     // do something with JSON
-  //     console.log("dataD4K >>", json);
-  //     dataD4K = json2array(json);
-  //   });
+  responseD4K = await axios({
+    url: `https://smndb.vercel.app/data/d4k.json`,
+    method: "GET",
+    // headers: {
+    //   "Content-Type": "application/json",
+    //   Accept: "application/json",
+    // },
+  })
+    .then((res) => {
+      // console.log(
+      //   "ressss",
+      //   res.data.filter((o) => o.element == "earth")
+      // );
+      //cards.jsreturn json2array(res.data).filter((o) => o.element == "earth");
+      return res.data;
+    })
+    .catch(() => {});
 
-  // var api = {
-  //   method: "get",
-  //   url: "https://smndb.vercel.app/data/d4k",
-  // };
-
-  // await axios(api)
-  //   .then(function (response) {
-  //     console.log("dataD4K >>", response);
-  //     const result = response.data;
-  //     dataD4K = result.data;
-  //   })
-  //   .catch(function (error) {
-  //     console.log("error >>", error);
-  //   });
+  //console.log("responseD4K >>>", responseD4K);
 
   return {
-    dataD4K: mockD4K,
-    dataStarter: mockStarter,
-    dataAlleluia: mockAlleluia,
+    dataD4K: responseD4K,
+    // dataStarter: mockStarter,
+    // dataAlleluia: mockAlleluia,
   };
 };
 
@@ -50,6 +47,7 @@ const json2array = (json) => {
   keys.forEach(function (key) {
     result.push(json[key]);
   });
+
   return result;
 };
 
