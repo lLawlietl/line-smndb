@@ -32,10 +32,6 @@ const webhook = async (req, res) => {
       if (type === "message") {
         const { type, text } = message;
         if (type === "text") {
-          console.log("TEXT");
-          console.log(text.trim());
-          let register = "ลงทะเบียนโครงการ :";
-          let report = "ส่งคำร้อง";
           //   if (
           //     text.trim().toLowerCase() === "smart support" ||
           //     words.words.includes(text.trim())
@@ -174,10 +170,11 @@ const webhook = async (req, res) => {
             //console.log("libraryTemplate >>", libraryTemplate);
             return client.replyMessage(replyToken, libraryTemplate);
           } else if (text.trim().includes("-d4k")) {
+            console.log("d4k>>");
             let type = text.trim().substring("-")[0];
             let list = await listCards();
             let filter = list.dataD4K.filter((o) => o.element == type);
-
+            console.log("filter>>", filter);
             let contentBubbles = [];
             let contentImages = [];
             let contentMessages = [];
