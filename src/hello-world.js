@@ -12,7 +12,9 @@ const port = 3000;
 const xxx = async () => {
   const r = await listCards();
 
-  console.log("cards >>", r.dataD4K);
+  let filter = r.dataStarter.filter((o) => o.element == "fire");
+
+  console.log("cards >>", filter);
 };
 
 xxx();

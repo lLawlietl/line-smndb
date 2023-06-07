@@ -105,16 +105,18 @@ const webhook = async (req, res) => {
             for (item of promotions.data) {
               replyPromotions.push({
                 type: "bubble",
-                action: {
-                  type: "uri",
-                  uri: item.value,
-                },
                 hero: {
                   type: "image",
                   url: item.value,
+                  align: "center",
                   size: "full",
-                  aspectRatio: "10:15",
-                  aspectMode: "fit",
+                  aspectRatio: "15:15",
+                  aspectMode: "cover",
+                  action: {
+                    type: "uri",
+                    label: "url",
+                    uri: item.value,
+                  },
                 },
               });
             }
@@ -215,7 +217,7 @@ const webhook = async (req, res) => {
                     contents: [
                       {
                         type: "text",
-                        text: text.trim(),
+                        text: `${type} D4K`,
                         weight: "bold",
                         size: "sm",
                         color: "#AAAAAA",
@@ -282,7 +284,7 @@ const webhook = async (req, res) => {
                 contents: [
                   {
                     type: "text",
-                    text: text.trim(),
+                    text: `${type} D4K`,
                     weight: "bold",
                     size: "sm",
                     color: "#AAAAAA",
@@ -363,7 +365,7 @@ const webhook = async (req, res) => {
                     contents: [
                       {
                         type: "text",
-                        text: text.trim(),
+                        text: `${type} Starter`,
                         weight: "bold",
                         size: "sm",
                         color: "#AAAAAA",
@@ -430,7 +432,7 @@ const webhook = async (req, res) => {
                 contents: [
                   {
                     type: "text",
-                    text: text.trim(),
+                    text: `${type} Starter`,
                     weight: "bold",
                     size: "sm",
                     color: "#AAAAAA",
@@ -511,7 +513,7 @@ const webhook = async (req, res) => {
                     contents: [
                       {
                         type: "text",
-                        text: text.trim(),
+                        text: `${type} Alleluia`,
                         weight: "bold",
                         size: "sm",
                         color: "#AAAAAA",
@@ -578,7 +580,7 @@ const webhook = async (req, res) => {
                 contents: [
                   {
                     type: "text",
-                    text: text.trim(),
+                    text: `${type} Alleluia`,
                     weight: "bold",
                     size: "sm",
                     color: "#AAAAAA",
