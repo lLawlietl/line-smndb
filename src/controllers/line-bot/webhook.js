@@ -237,7 +237,7 @@ const webhook = async (req, res) => {
                         type: "box",
                         layout: "vertical",
                         flex: 2,
-                        position: "relative",
+
                         contents: contentMessages,
                       },
                     ],
@@ -274,6 +274,31 @@ const webhook = async (req, res) => {
               }
             }
 
+            for (i = cnt; i <= 9; i++) {
+              contentImages.push({
+                type: "image",
+                url: ``,
+                margin: "none",
+                gravity: "bottom",
+                size: "sm",
+                aspectRatio: "4:5",
+                aspectMode: "cover",
+              });
+
+              contentMessages.push({
+                type: "text",
+                text: ``,
+                size: "xs",
+                flex: 1,
+                gravity: "center",
+                contents: [],
+              });
+
+              contentMessages.push({
+                type: "separator",
+              });
+            }
+
             contentBubbles.push({
               type: "bubble",
               header: {
@@ -305,14 +330,14 @@ const webhook = async (req, res) => {
                     type: "box",
                     layout: "vertical",
                     flex: 2,
-                    position: "relative",
+
                     contents: contentMessages,
                   },
                 ],
               },
             });
 
-            console.log("contentBubbles >>", contentBubbles);
+            //console.log("contentBubbles >>", contentBubbles);
 
             return client.replyMessage(replyToken, {
               type: "flex",
