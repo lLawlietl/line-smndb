@@ -173,9 +173,9 @@ const webhook = async (req, res) => {
             return client.replyMessage(replyToken, libraryTemplate);
           } else if (text.trim().includes("-all")) {
             let type = text.trim().substring("-")[0];
-            let filter = await listCards().dataD4K.filter(
-              (o) => o.element == "earth"
-            );
+            let xxx = await listCards();
+            console.log("xxx >>>", xxx);
+            let filter = xxx.dataD4K.filter((o) => o.element == "earth");
             // let filter1 = listCards().dataStarter.filter(
             //   (o) => o.element == type
             // );
