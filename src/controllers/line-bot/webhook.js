@@ -180,7 +180,7 @@ const webhook = async (req, res) => {
             let contentMessages = [];
             let cnt = 0;
             for (data of filter) {
-              if (cnt <= 10) {
+              if (cnt <= 9) {
                 contentImages.push({
                   type: "image",
                   url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`.toLowerCase(),
@@ -310,6 +310,7 @@ const webhook = async (req, res) => {
               },
             });
 
+            console.log("contentBubbles >>", contentBubbles);
             return client.replyMessage(replyToken, {
               type: "flex",
               altText: "Response message",
@@ -328,7 +329,7 @@ const webhook = async (req, res) => {
             let contentMessages = [];
             let cnt = 0;
             for (data of filter) {
-              if (cnt <= 10) {
+              if (cnt <= 9) {
                 contentImages.push({
                   type: "image",
                   url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`.toLowerCase(),
@@ -476,7 +477,7 @@ const webhook = async (req, res) => {
             let contentMessages = [];
             let cnt = 0;
             for (data of filter) {
-              if (cnt <= 10) {
+              if (cnt <= 9) {
                 contentImages.push({
                   type: "image",
                   url: `https://smndb.vercel.app/images/cards/${data.pack}/${data.id}.jpg`.toLowerCase(),
